@@ -1,0 +1,271 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| abc                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| rutu               |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.04 sec)
+
+mysql> use rutu;
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_rutu |
++----------------+
+| student        |
++----------------+
+1 row in set (0.01 sec)
+
+mysql> select * from studnet;
+ERROR 1146 (42S02): Table 'rutu.studnet' doesn't exist
+mysql> select * from student;
+Empty set (0.01 sec)
+
+mysql> use abc;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_abc |
++---------------+
+| cust_info     |
+| faculty       |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from facuylty;
+ERROR 1146 (42S02): Table 'abc.facuylty' doesn't exist
+mysql> select * from faculty;
++------+------+---------+
+| id   | sub  | name    |
++------+------+---------+
+|   14 | NULL | Rutu    |
+|   14 | NULL | heena   |
+|   14 | NULL | harnish |
+| NULL | NULL | Hirva   |
++------+------+---------+
+4 rows in set (0.01 sec)
+
+mysql> truncate table faculty;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from faculty;
+Empty set (0.00 sec)
+
+mysql> insert into faculty values(23,'sci','rutu');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from faculty;
++------+------+------+
+| id   | sub  | name |
++------+------+------+
+|   23 | sci  | rutu |
++------+------+------+
+1 row in set (0.00 sec)
+
+mysql> drop table faculty;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from faculty;
+ERROR 1146 (42S02): Table 'abc.faculty' doesn't exist
+mysql> select * from cust_info;
++------+--------+------------+------+---------------+-------+
+| cid  | c_name | contact    | city | date_purchase | total |
++------+--------+------------+------+---------------+-------+
+|   89 | hana   | 8956474521 | abd  | 2002-09-09    | 45000 |
++------+--------+------------+------+---------------+-------+
+1 row in set (0.01 sec)
+
+mysql> insert into cust_info(43,'rutu','8956457812','surat','2002/02/12',89000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '43,'rutu','8956457812','surat','2002/02/12',89000)' at line 1
+mysql> insert into cust_info values(43,'rutu','8956457812','surat','2002/02/12',89000);
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> insert into cust_info(14,'jay','8980457895','goa','1996/10/01','58000');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '14,'jay','8980457895','goa','1996/10/01','58000')' at line 1
+mysql> insert into cust_info(14,'jay','8980457895','goa','1996/10/01',58000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '14,'jay','8980457895','goa','1996/10/01',58000)' at line 1
+mysql> insert into cust_info values(14,'jay','8980457895','goa','1996/10/01',58000);
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> insert info cust_info values(42,'harnish','9874563210','vapi','2000/05/08',12000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cust_info values(42,'harnish','9874563210','vapi','2000/05/08',12000)' at line 1
+mysql> insert into cust_info values(42,'harnish','9874563210','vapi','2000/05/08',12000);
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> insert into cust_info values(23,''anjani',''3214569870','anand','2005/21/12',4521);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'anjani',''3214569870','anand','2005/21/12',4521)' at line 1
+mysql> insert into cust_info values(23,'anjani','3214569870','anand','2005/21/12',4521);
+ERROR 1292 (22007): Incorrect date value: '2005/21/12' for column 'date_purchase' at row 1
+mysql> insert into cust_info values(23,'anjani','3214569870','anand','2005/01/12',4521);
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> select * from cust_info;
++------+---------+------------+-------+---------------+-------+
+| cid  | c_name  | contact    | city  | date_purchase | total |
++------+---------+------------+-------+---------------+-------+
+|   89 | hana    | 8956474521 | abd   | 2002-09-09    | 45000 |
+|   43 | rutu    | 8956457812 | surat | 2002-02-12    | 89000 |
+|   14 | jay     | 8980457895 | goa   | 1996-10-01    | 58000 |
+|   42 | harnish | 9874563210 | vapi  | 2000-05-08    | 12000 |
+|   23 | anjani  | 3214569870 | anand | 2005-01-12    |  4521 |
++------+---------+------------+-------+---------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> update cust_info set city='abd' where cid=42;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from cust_info;
++------+---------+------------+-------+---------------+-------+
+| cid  | c_name  | contact    | city  | date_purchase | total |
++------+---------+------------+-------+---------------+-------+
+|   89 | hana    | 8956474521 | abd   | 2002-09-09    | 45000 |
+|   43 | rutu    | 8956457812 | surat | 2002-02-12    | 89000 |
+|   14 | jay     | 8980457895 | goa   | 1996-10-01    | 58000 |
+|   42 | harnish | 9874563210 | abd   | 2000-05-08    | 12000 |
+|   23 | anjani  | 3214569870 | anand | 2005-01-12    |  4521 |
++------+---------+------------+-------+---------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select city from cust_info;
++-------+
+| city  |
++-------+
+| abd   |
+| surat |
+| goa   |
+| abd   |
+| anand |
++-------+
+5 rows in set (0.00 sec)
+
+mysql> select distinct city from cust_info;
++-------+
+| city  |
++-------+
+| abd   |
+| surat |
+| goa   |
+| anand |
++-------+
+4 rows in set (0.00 sec)
+
+mysql> select c_name from cust_info where c_name like'a%';
++--------+
+| c_name |
++--------+
+| anjani |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select * from cust_info where c_name like'a%';
++------+--------+------------+-------+---------------+-------+
+| cid  | c_name | contact    | city  | date_purchase | total |
++------+--------+------------+-------+---------------+-------+
+|   23 | anjani | 3214569870 | anand | 2005-01-12    |  4521 |
++------+--------+------------+-------+---------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from cust_info where c_name like'%i';
++------+--------+------------+-------+---------------+-------+
+| cid  | c_name | contact    | city  | date_purchase | total |
++------+--------+------------+-------+---------------+-------+
+|   23 | anjani | 3214569870 | anand | 2005-01-12    |  4521 |
++------+--------+------------+-------+---------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from cust_info where c_name like'%n%';
++------+---------+------------+-------+---------------+-------+
+| cid  | c_name  | contact    | city  | date_purchase | total |
++------+---------+------------+-------+---------------+-------+
+|   89 | hana    | 8956474521 | abd   | 2002-09-09    | 45000 |
+|   42 | harnish | 9874563210 | abd   | 2000-05-08    | 12000 |
+|   23 | anjani  | 3214569870 | anand | 2005-01-12    |  4521 |
++------+---------+------------+-------+---------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from cust_info;'
++------+---------+------------+-------+---------------+-------+
+| cid  | c_name  | contact    | city  | date_purchase | total |
++------+---------+------------+-------+---------------+-------+
+|   89 | hana    | 8956474521 | abd   | 2002-09-09    | 45000 |
+|   43 | rutu    | 8956457812 | surat | 2002-02-12    | 89000 |
+|   14 | jay     | 8980457895 | goa   | 1996-10-01    | 58000 |
+|   42 | harnish | 9874563210 | abd   | 2000-05-08    | 12000 |
+|   23 | anjani  | 3214569870 | anand | 2005-01-12    |  4521 |
++------+---------+------------+-------+---------------+-------+
+5 rows in set (0.00 sec)
+
+    '> ;
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''
+;
+'' at line 1
+mysql> select * from cust_info order by cid;
++------+---------+------------+-------+---------------+-------+
+| cid  | c_name  | contact    | city  | date_purchase | total |
++------+---------+------------+-------+---------------+-------+
+|   14 | jay     | 8980457895 | goa   | 1996-10-01    | 58000 |
+|   23 | anjani  | 3214569870 | anand | 2005-01-12    |  4521 |
+|   42 | harnish | 9874563210 | abd   | 2000-05-08    | 12000 |
+|   43 | rutu    | 8956457812 | surat | 2002-02-12    | 89000 |
+|   89 | hana    | 8956474521 | abd   | 2002-09-09    | 45000 |
++------+---------+------------+-------+---------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from cust_info order by cid DESC;
++------+---------+------------+-------+---------------+-------+
+| cid  | c_name  | contact    | city  | date_purchase | total |
++------+---------+------------+-------+---------------+-------+
+|   89 | hana    | 8956474521 | abd   | 2002-09-09    | 45000 |
+|   43 | rutu    | 8956457812 | surat | 2002-02-12    | 89000 |
+|   42 | harnish | 9874563210 | abd   | 2000-05-08    | 12000 |
+|   23 | anjani  | 3214569870 | anand | 2005-01-12    |  4521 |
+|   14 | jay     | 8980457895 | goa   | 1996-10-01    | 58000 |
++------+---------+------------+-------+---------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from cust_info order by cid ASC;
++------+---------+------------+-------+---------------+-------+
+| cid  | c_name  | contact    | city  | date_purchase | total |
++------+---------+------------+-------+---------------+-------+
+|   14 | jay     | 8980457895 | goa   | 1996-10-01    | 58000 |
+|   23 | anjani  | 3214569870 | anand | 2005-01-12    |  4521 |
+|   42 | harnish | 9874563210 | abd   | 2000-05-08    | 12000 |
+|   43 | rutu    | 8956457812 | surat | 2002-02-12    | 89000 |
+|   89 | hana    | 8956474521 | abd   | 2002-09-09    | 45000 |
++------+---------+------------+-------+---------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from cust_info order by cid DESC where total>50000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where total>50000' at line 1
+mysql> select * from cust_info where total>50000 order by cid DESC;
++------+--------+------------+-------+---------------+-------+
+| cid  | c_name | contact    | city  | date_purchase | total |
++------+--------+------------+-------+---------------+-------+
+|   43 | rutu   | 8956457812 | surat | 2002-02-12    | 89000 |
+|   14 | jay    | 8980457895 | goa   | 1996-10-01    | 58000 |
++------+--------+------------+-------+---------------+-------+
+2 rows in set (0.00 sec)
+
+mysql>

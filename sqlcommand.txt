@@ -1,0 +1,32 @@
+TRUNCTAE : 
+	to remove all the records fromt he table 
+
+	Syntax : truncate table table_name;
+
+DROP : 
+
+	to delete whole table from database
+	
+	syuntax: drop table table_name;
+
+DDL commands done
+====================================================
+
+DQL : Data Query Language 
+
+SELECT Clauses
+Where done
+DISTINCT : to fetch unique data from column
+
+
+
+
+
+
+
+
+
+
+
+
+

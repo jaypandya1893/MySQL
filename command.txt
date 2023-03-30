@@ -1,0 +1,65 @@
+>>DML :
+
+INSERT : 
+	Synatxa : insert into table_name(col1,col2,..,coln) values(val1,val2,..,valn);
+
+
+>>how to update 
+UPDATE:
+
+	Syntax : update table_name set col=val where condition;
+
+DELETE
+>>How to delete any record ?
+	Syntax : delete from table_name where condition;
+
+----------------------------------------------------------------------------------
+
+DDL: 
+
+CREATE : done
+
+ALTER: to change the defination or to change someything in table 
+	
+	Syntax : 
+
+	alter table table_name {add/drop/modify} col_name data_type;
+
+	>>To add new column:
+
+	Syntax : alter table table_name add col_name data_type; 
+
+	>>to delete any column :
+	Syntax : alter table table_name drop col_name;
+
+	>>To change column
+
+	Syntax : alter table table_name modify col_name new_type;
+
+	>>How to change column name in table ?
+
+	Syntax : alter table table_name rename column col_name to new_name;
+
+	>>How to change table_name ?
+
+	Syntax : alter table table_name rename to new_name;
+
+TRUNCATE
+
+DROP 
+
+
+---------------------------------------------------------------------------
+
+DQL :
+	to retrive data from tbl
+
+	Syntax : 
+
+	select * from table_name;
+
+
+	>>to select perticular column value : 
+	
+	select col1,col2,..,coln from table_name;
+
